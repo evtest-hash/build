@@ -1,5 +1,5 @@
 name: Build
-run-name: Build with Blade3 Debian
+run-name: Build with Mixtile Core3588E Debian
 
 on:
   workflow_dispatch:
@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         platform:
-          - mixtile-blade3
+          - mixtile-core3588e
 
     steps:
       - name: Get more disk space
@@ -74,14 +74,14 @@ jobs:
       - name: download code
         shell: bash
         run: |
-          repo init -u https://github.com/mixtile-rockchip/manifests.git -b test -m rk3588_linux_release.xml && \
+          repo init -u https://github.com/evtest-hash/manifests.git -b master -m mixtile_core3588e_release.xml && \
           repo sync
 
       - name: Build image
         shell: bash
         run: |
           echo '20' > input.txt && \
-          echo '2' >> input.txt && \
+          echo '5' >> input.txt && \
           sudo ./build.sh chip < input.txt && sudo rm input.txt && \
           sudo ./build.sh all
 
@@ -96,14 +96,14 @@ jobs:
       - name: Upload RK Image image
         uses: actions/upload-artifact@v3
         with:
-          name: image-release-rockchip-format-mixtile-blade3-Debian
+          name: image-release-rockchip-format-mixtile-core3588e-Debian
           path: ./output/update/Image/update.img.xz
           if-no-files-found: error
 
       - name: Upload RAW Image image
         uses: actions/upload-artifact@v3
         with:
-          name: image-release-raw-format-mixtile-blade3-Debian
+          name: image-release-raw-format-mixtile-core3588e-Debian
           path: ./output/update/Image/update.raw.img.xz
           if-no-files-found: error
 

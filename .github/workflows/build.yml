@@ -74,7 +74,7 @@ jobs:
       - name: download code
         shell: bash
         run: |
-          repo init -u https://github.com/evtest-hash/manifests.git -b master -m mixtile_core3588e_release.xml && \
+          repo init -u https://github.com/mixtile-rockchip/manifests.git -b master -m mixtile_core3588e_release.xml && \
           repo sync
 
       - name: Build image
